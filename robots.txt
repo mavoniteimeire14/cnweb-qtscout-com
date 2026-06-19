@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mavoniteimeire14.github.io/cnweb-qtscout-com/sitemap.xml

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>球探 · 资料索引与信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background: #f1f7fa;
+            color: #1f2d3a;
+            line-height: 1.6;
+            padding: 0 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 0.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 4.5rem 0 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2a9d8f, #48cae4);
+            margin: 1.8rem auto 0;
+            border-radius: 4px;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b2b35;
+        }
+
+        .hero h1 span {
+            color: #2a9d8f;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #3d5a6c;
+            max-width: 620px;
+            margin: 1.2rem auto 0;
+            font-weight: 400;
+        }
+
+        .hero p a {
+            color: #2a9d8f;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 2px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .hero p a:hover {
+            color: #1e7a6b;
+        }
+
+        /* 优势区 网格卡片 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 3rem 0 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 8px 18px rgba(0, 20, 30, 0.06);
+            transition: transform 0.2s, box-shadow 0.25s;
+            border: 1px solid #e5edf2;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 28px rgba(42, 157, 143, 0.08);
+            border-color: #b7d9d0;
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.6rem;
+            display: inline-block;
+            background: #e3f2ed;
+            width: 48px;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            border-radius: 14px;
+            color: #2a9d8f;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #14323b;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #3e5a69;
+        }
+
+        /* 说明区 —— 从资料整理角度切入 */
+        .explain-section {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            margin: 2rem 0 1.8rem;
+            border: 1px solid #dae8e4;
+            box-shadow: 0 6px 14px rgba(0, 30, 40, 0.04);
+        }
+
+        .explain-section h2 {
+            font-size: 1.8rem;
+            font-weight: 550;
+            color: #17444d;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .explain-section h2::before {
+            content: "📂";
+            font-size: 1.8rem;
+        }
+
+        .explain-section p {
+            margin-bottom: 1rem;
+            color: #2b4757;
+        }
+
+        .explain-section strong {
+            color: #217a6c;
+        }
+
+        .explain-section .insight-tip {
+            background: #edf6f3;
+            padding: 1rem 1.3rem;
+            border-radius: 16px;
+            margin-top: 1rem;
+            border-left: 4px solid #2a9d8f;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ 摘要 */
+        .faq-summary {
+            margin: 2.8rem 0 1.2rem;
+        }
+
+        .faq-summary h2 {
+            font-size: 1.6rem;
+            font-weight: 550;
+            color: #14323b;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .faq-summary h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            width: 6px;
+            height: 28px;
+            background: #2a9d8f;
+            border-radius: 8px;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid #e2edec;
+            transition: background 0.15s;
+        }
+
+        .faq-item:hover {
+            background: #f7fcfb;
+        }
+
+        .faq-item h4 {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1a3d49;
+            margin-bottom: 0.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item h4::after {
+            content: "﹀";
+            color: #6b8d8a;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #3e5f6b;
+            margin-top: 0.3rem;
+            padding-right: 1.5rem;
+        }
+
+        /* 底部链接 + 水印式文本 */
+        .footer-links {
+            margin: 4rem 0 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #d1dfdb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .footer-links .legal {
+            font-size: 0.8rem;
+            color: #6d8c92;
+            max-width: 500px;
+        }
+
+        .footer-links .inline-link {
+            font-size: 1rem;
+            color: #2a9d8f;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .footer-links .inline-link:hover {
+            color: #1e7a6b;
+        }
+
+        .footer-links .small-note {
+            color: #78969e;
+            font-size: 0.8rem;
+        }
+
+        /* 移动端 */
+        @media (max-width: 680px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.05rem;
+                padding: 0 0.3rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .explain-section {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .explain-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .faq-item {
+                padding: 1rem;
+            }
+
+            .faq-item h4::after {
+                display: none;
+            }
+
+            .footer-links {
+                margin: 2.5rem 0 2rem;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .card .icon {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 1.6rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>资料整理 · <span>球探</span></h1>
+            <p>把散落的信息编成清晰索引，让每一份记录都有归属。这里是关于 <a href="https://cnweb-qtscout.com">球探</a> 的收录与梳理，不喧哗，只做踏实的归档。</p>
+        </section>
+
+        <!-- 优势区 网格卡片 -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="icon">📌</div>
+                <h3>归类与标签</h3>
+                <p>按赛事、球员、周期自动标注，层级分明。找资料不用再反复翻聊天记录。</p>
+            </div>
+            <div class="card">
+                <div class="icon">🔗</div>
+                <h3>关联索引</h3>
+                <p>同一球员在多场比赛的数据相互链接，形成个人档案，减少重复查询。</p>
+            </div>
+            <div class="card">
+                <div class="icon">📆</div>
+                <h3>时间线视图</h3>
+                <p>以月份或轮次为单位聚合信息，一眼看清变化趋势，适合复盘和长期跟踪。</p>
+            </div>
+            <div class="card">
+                <div class="icon">📋</div>
+                <h3>摘要卡片</h3>
+                <p>每份记录自动提取关键字段，比分、出场、亮点一目了然，不用翻冗长原文。</p>
+            </div>
+        </div>
+
+        <!-- 说明区 —— 资料整理与信息索引 -->
+        <section class="explain-section">
+            <h2>从笔记到索引</h2>
+            <p>很多人习惯把看到的资料随手存进收藏夹或备忘录，但时间一长，内容越堆越乱，<strong>想找一条具体记录反而无从下手</strong>。球探做的就是这件事：把碎片信息拆解成可检索的结构。</p>
+            <p>你可以把它想象成一本<strong>不断更新的活页手册</strong>——每场比赛、每名球员的动向都被归入对应分类，并且相互之间通过标签、日期、赛事等维度串联。换一个角度：不是所有信息都需要即时输出，但所有信息都值得被妥善存放。</p>
+            <div class="insight-tip">
+                💡 小提示：如果每次查资料都要花十分钟翻历史记录，说明需要一套更轻的索引方式。不妨试试把整理思路交给 <a href="https://cnweb-qtscout.com" style="color:#217a6c; font-weight:600; text-decoration:underline;">球探</a> 的逻辑，让存档变成一件有秩序感的事。
+            </div>
+        </section>
+
+        <!-- FAQ 摘要 -->
+        <section class="faq-summary">
+            <h2>常见疑问 · 摘要</h2>
+            <div class="faq-item">
+                <h4>资料索引会过时吗？</h4>
+                <p>只要源数据持续更新，索引就会同步调整。每条记录都附带时间戳，旧数据不会被删除，但会标记为历史版本，方便回溯。</p>
+            </div>
+            <div class="faq-item">
+                <h4>我可以自己添加备注吗？</h4>
+                <p>部分卡片支持自定义注释，相当于在官方索引旁边贴一张便签。注释仅本地可见，不影响整体结构。</p>
+            </div>
+            <div class="faq-item">
+                <h4>手机上看方便吗？</h4>
+                <p>页面完全适配移动端，卡片和摘要都按小屏优化。在地铁上也能快速浏览某轮比赛的汇总。</p>
+            </div>
+        </section>
+
+        <!-- 底部链接 -->
+        <footer class="footer-links">
+            <span class="small-note">📎 持续收录 · 保持克制</span>
+            <span>
+                想了解更多整理方式，可以常来看看 <a href="https://cnweb-qtscout.com" class="inline-link">球探</a> 的索引逻辑。
+            </span>
+            <div class="legal">
+                页面内容仅作信息索引与资料梳理，不构成任何预测或建议。数据均来自公开来源，仅供参考。
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
